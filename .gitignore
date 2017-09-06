@@ -3,3 +3,5 @@ yarn.lock
 .DS_Store
 .vscode/launch.json
 .eslintrc.json
+build/
+tslint.json
