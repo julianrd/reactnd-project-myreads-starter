@@ -40,7 +40,7 @@ class BooksApp extends React.Component {
       this.setState({
         ...this.state,
         books: books.map(b => apiResultToBook(b))
-      })
+      });
     })
   }
 
@@ -65,7 +65,7 @@ class BooksApp extends React.Component {
           <ListBooks shelves={this.state.bookShelves} books={this.state.books} updateBook={this.updateBook}/>
         )} />
         <Route path="/search" render={() => (
-          <SearchBooks />
+          <SearchBooks updateBook={this.updateBook}/>
         )} />
       </div>
     )
