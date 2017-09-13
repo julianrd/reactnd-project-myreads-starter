@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 
 const getShelfBooks = (value, books) => {
-  return books.filter(b => b.shelve === value)
+  return books.filter(b => b.shelf === value)
 }
 
 const ListBooks = (props) => (
@@ -26,7 +26,7 @@ const ListBooks = (props) => (
 
 ListBooks.propTypes = {
   shelves: PropTypes.array.isRequired,
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
 }
 
 export default ListBooks

@@ -13,16 +13,12 @@ const options = [
   {
     title: "Read",
     value: "read"
-  },
-  {
-    title: "None",
-    value: "none"
   }
 ]
 
 const ShelfChanger = (props = { selected: "none" }) => (
   <div className="book-shelf-changer">
-    <select defaultValue={props.selected}>
+    <select defaultValue={props.selected ? props.selected : 'none'}>
       <option disabled value="none" >Move to...</option>
       {options.map(s =>
         <option key={s.value} value={s.value}>{s.title}</option>
