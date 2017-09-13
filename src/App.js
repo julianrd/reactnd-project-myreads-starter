@@ -21,7 +21,7 @@ const bookShelves = [
   }
 ]
 
-export const apiResultToBook = ({id, title, authors = [], imageLinks, shelf = 'none'} = {}) => {
+export const apiResultToBook = ({ id, title, authors = [], imageLinks, shelf = 'none' } = {}) => {
   return { id, title, authors, imageURL: `url("${imageLinks.thumbnail}")`, shelf }
 }
 
@@ -34,9 +34,9 @@ class BooksApp extends React.Component {
     };
     this.updateBook.bind(this);
   }
-  
-  componentDidMount(){
-    getAll().then(books =>{
+
+  componentDidMount() {
+    getAll().then(books => {
       this.setState({
         ...this.state,
         books: books.map(b => apiResultToBook(b))
@@ -47,25 +47,26 @@ class BooksApp extends React.Component {
   updateBook = (book) => {
     return (shelf) => {
       update(book, shelf).then((shelves) => {
+        
         this.setState((prevState) => {
-          const books = prevState.books.filter(b => b.id !== book.id)
+          const books = prevState.books.filter(b => b.id !== book.id);
           return {
-            ...prevState,
-            books: [...books, {...book, shelf: shelf}]
+          ...prevState,
+          books: [...books, { ...book, shelf: shelf }]
           }
-        })
+        });
       });
     }
   }
-  
+
   render() {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <ListBooks shelves={this.state.bookShelves} books={this.state.books} updateBook={this.updateBook}/>
+          <ListBooks shelves={this.state.bookShelves} books={this.state.books} updateBook={this.updateBook} />
         )} />
         <Route path="/search" render={() => (
-          <SearchBooks updateBook={this.updateBook}/>
+          <SearchBooks updateBook={this.updateBook} />
         )} />
       </div>
     )
