@@ -6,7 +6,7 @@ const Book = (props) => (
   <div className="book">
     <div className="book-top">
       <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: props.imageURL }}></div>
-      <ShelfChanger selected={props.shelf} />
+      <ShelfChanger selected={props.shelf} update={props.update}/>
     </div>
     <div className="book-title">{props.title}</div>
     {props.authors.map((a,i) =>
@@ -21,6 +21,7 @@ Book.propTypes = {
   authors: PropTypes.array.isRequired,
   imageURL: PropTypes.string.isRequired,
   shelf: PropTypes.string,
+  update: PropTypes.func.isRequired
 }
 
 export default Book;

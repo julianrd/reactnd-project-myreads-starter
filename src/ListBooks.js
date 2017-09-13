@@ -14,7 +14,11 @@ const ListBooks = (props) => (
     </div>
     <div className="list-books-content">
       <div>{props.shelves.map(bs =>
-        <BookShelf key={bs.title} title={bs.title} books={getShelfBooks(bs.value, props.books)} />
+        <BookShelf
+          key={bs.title}
+          title={bs.title}
+          books={getShelfBooks(bs.value, props.books)}
+          updateBook={props.updateBook} />
       )}
       </div>
     </div>
@@ -27,6 +31,7 @@ const ListBooks = (props) => (
 ListBooks.propTypes = {
   shelves: PropTypes.array.isRequired,
   books: PropTypes.array.isRequired,
+  updateBook: PropTypes.func.isRequired
 }
 
 export default ListBooks

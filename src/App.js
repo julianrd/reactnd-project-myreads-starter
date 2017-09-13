@@ -4,7 +4,7 @@ import './App.css';
 import { Route } from 'react-router-dom';
 import ListBooks from './ListBooks';
 import SearchBooks from './SearchBooks';
-import { getAll } from './BooksAPI';
+import { getAll, update } from './BooksAPI';
 
 const bookShelves = [
   {
@@ -26,10 +26,14 @@ export const apiResultToBook = ({id, title, authors = [], imageLinks, shelf = 'n
 }
 
 class BooksApp extends React.Component {
-  state = {
-    bookShelves: bookShelves,
-    books: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      bookShelves: bookShelves,
+      books: []
+    };
+    this.updateBook.bind(this);
+  }
   
   componentDidMount(){
     getAll().then(books =>{
@@ -39,12 +43,26 @@ class BooksApp extends React.Component {
       })
     })
   }
+
+  updateBook = (book) => {
+    return (shelf) => {
+      update(book, shelf).then((shelves) => {
+        this.setState((prevState) => {
+          const books = prevState.books.filter(b => b.id !== book.id)
+          return {
+            ...prevState,
+            books: [...books, {...book, shelf: shelf}]
+          }
+        })
+      });
+    }
+  }
   
   render() {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <ListBooks shelves={this.state.bookShelves} books={this.state.books} />
+          <ListBooks shelves={this.state.bookShelves} books={this.state.books} updateBook={this.updateBook}/>
         )} />
         <Route path="/search" render={() => (
           <SearchBooks />
