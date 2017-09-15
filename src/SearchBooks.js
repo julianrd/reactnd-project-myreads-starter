@@ -30,14 +30,18 @@ class SearchBooks extends React.Component {
       this.setState({
         ...this.state,
         query: query
-      });
+      })
       this.typeWatch(search(query, 20)
         .then(books => {
-          if (books.error) books = [];
+          if (books.error) books = []
           this.setState({
             ...this.state,
-            results: books.map(result => apiResultToBook(result))
-          });
+            results: books.map(result => {
+              if (this.props.currentBooks.has(result.id))
+                result.shelf = this.props.currentBooks.get(result.id);
+              return apiResultToBook(result);
+            })
+          })
         }), 1500);
     }
   }

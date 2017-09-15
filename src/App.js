@@ -59,6 +59,14 @@ class BooksApp extends React.Component {
     }
   }
 
+  getBooksMap = (books) => {
+    let map =  new Map();
+    for (const book of books){
+      map.set(book.id, book.shelf);
+    }
+    return map;
+  }
+
   render() {
     return (
       <div className="app">
@@ -66,7 +74,7 @@ class BooksApp extends React.Component {
           <ListBooks shelves={this.state.bookShelves} books={this.state.books} updateBook={this.updateBook} />
         )} />
         <Route path="/search" render={() => (
-          <SearchBooks updateBook={this.updateBook} />
+          <SearchBooks currentBooks={this.getBooksMap(this.state.books)} updateBook={this.updateBook} />
         )} />
       </div>
     )
