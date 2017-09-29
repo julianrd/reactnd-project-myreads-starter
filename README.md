@@ -14,7 +14,7 @@ To start the application:
 * Access the web page at http://localhost:3000/
 
 ## Contributions
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+ 
+* Thanks to the Udacity team for the starter template for this project.
+* Thanks to CMS and sventechie for inspiring the typeWatch function:
+https://stackoverflow.com/questions/1909441/how-to-delay-the-keyup-handler-until-the-user-stops-typing/18552683
