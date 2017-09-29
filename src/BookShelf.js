@@ -2,6 +2,12 @@ import React from 'react';
 import Book from './Book';
 import PropTypes from 'prop-types'
 
+/**
+ * @description Renders a shelf.
+ * @constructor
+ * @extends React.Component
+ * @param {*} props An object including title, books, and an updateBook function.
+ */
 const BookShelf = (props) => (
   <div className="bookshelf">
     <h2 className="bookshelf-title">{props.title}</h2>

@@ -5,12 +5,21 @@ import Book from './Book';
 import { search } from './BooksAPI';
 import { apiResultToBook } from './App.js'
 
+/**
+ * @description Renders a form that allows users to search books.
+ * @constructor
+ * @extends React.Component
+ */
 class SearchBooks extends React.Component {
   state = {
     query: '',
     results: []
   }
 
+  /**
+   * @description Delays the execution of a given function a given number of miliseconds.
+   * @return {Function} A function that accepts a callback to be delayed and the number of miliseconds.
+   */
   typeWatch = () => {
     let timer = 0;
     return (callback, ms) => {
@@ -19,6 +28,10 @@ class SearchBooks extends React.Component {
     }
   }
 
+  /**
+   * @description Manages the update of the query state and updates the state with the results of the API search.
+   * @param {string} query The string to query the API.
+   */
   handleChange = (query) => {
     if (query === '') {
       this.setState({
@@ -51,15 +64,11 @@ class SearchBooks extends React.Component {
       <div className="search-books-bar">
         <Link to="/" className="close-search">Close</Link>
         <div className="search-books-input-wrapper">
-          {/*
-                    NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                    You can find these search terms here:
-                    https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-  
-                    However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                    you don't find a specific author or title. Every search is limited by search terms.
-        */}
-          <input type="text" placeholder="Search by title or author" value={this.state.query} onChange={(e) => this.handleChange(e.target.value)} />
+          <input type="text"
+            placeholder="Search by title or author"
+            value={this.state.query}
+            onChange={(e) => this.handleChange(e.target.value)}
+          />
         </div>
       </div>
       {this.state.results.length === 0 &&
