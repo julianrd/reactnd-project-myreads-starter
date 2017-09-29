@@ -19,6 +19,10 @@ class SearchBooks extends React.Component {
   /**
    * @description Delays the execution of a given function a given number of miliseconds.
    * @return {Function} A function that accepts a callback to be delayed and the number of miliseconds.
+   * 
+   * Inspired by:
+   * https://stackoverflow.com/questions/1909441/how-to-delay-the-keyup-handler-until-the-user-stops-typing/18552683
+   * Thanks to CMS and sventechie
    */
   typeWatch = () => {
     let timer = 0;
